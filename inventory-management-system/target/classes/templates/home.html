@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-y:auto;
+}
+
+header {
+  background-color:#023047;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+}
+
+.product {
+  display: inline-block;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.product img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.product h2 {
+  margin-top: 0;
+}
+
+.product button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+footer {
+  background-color: #023047;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
+}
+
+   tr:hover{
+    background-color:rgb(156, 217, 231);
+    width: 10px;
+    border-radius: 11px;
+}
+
+            .center {
+                border: none;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius:11px;
+    background-color: rgb(203, 241, 243);
+    }
+.delete_item{
+     float: right;
+     right: 0%;top: 0%;
+}
+/* Your existing CSS styles */
+
+.action-buttons {
+    position: fixed;
+    top: 200px;
+    width:200px;
+    right: 100px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(185, 213, 231);
+    border-radius: 6px;
+}
+
+.action-buttons form {
+    margin-bottom: 40px;
+    backgorund
+}
+        a{
+        text-decoration: none;
+        }
+.output{
+        text-align:center;
+        }
+         body{
+            font-family: cursive;}
+    </style>
+
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>MADDY MART</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="about">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<h1 style="text-align: center;">CATEGORIES</h1>
+
+
+<table class="center" >
+    <thead >
+    <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>Stationary</td>
+
+        <td><button><a href="edit1">view</a></button></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Dress</td>
+        <td><button><a href="edit2">view</a></button></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Electronics</td>
+        <td><button><a href="edit3">view</a></button></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Snacks</td>
+        <td><button><a href="edit4">view</a></button></td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>view all</td>
+        <td><button action="edit55"><a href="edit55">view </a></button></td>
+    </tr>
+    </tbody>
+</table>
+<p id="output"></p><br><br><br>
+<div style="text-align: center;" class="orders">
+    <table align="center" class="center" >
+        <thead>
+            <td> ID</td>&nbsp;&nbsp;
+            <td>Name</td>&nbsp;&nbsp;
+            <td>Price</td>&nbsp;&nbsp;
+
+            <td>Category_id</td>&nbsp;&nbsp;
+            <td>Count </td>&nbsp;
+            <td> description</td>
+        </thead>
+
+        <tbody>
+        <th:block th:each="order: ${Inventory}">
+            <tr>
+                <td th:text="${order.id}"> ID</td>&nbsp;&nbsp;
+                <td th:text="${order.name}">Name</td>&nbsp;&nbsp;
+                <td th:text="${order.price}">Price</td>&nbsp;&nbsp;
+
+                <td th:text="${order.category_id}">Category_id</td>&nbsp;&nbsp;
+                <td th:text="${order.count}">Count </td>&nbsp;
+                <td th:text="${order.description}"> description</td>
+                <td>
+                    <form method="post" action="inc1" >
+                        <input type="hidden" name="inv_id" th:value="${order.id}">
+                        <input type="submit" value="+">
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="desc" >
+                        <input type="hidden" name="desc_id" th:value="${order.id}">
+                        <input type="submit" value="-">
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+    <div class="action-buttons">
+        <form action="add" method="post">
+            <button type="submit">Add</button>
+        </form>
+        <form action="update" method="post">
+            <button type="submit">Update</button>
+        </form>
+        <form method="post" action="delete/post">
+            <input type="number" id="id" name="id" placeholder="ID" min="0" max="10000" size="4">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+    <script src="/js/main.js"></script>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<footer>
+    <p>&copy; 2024 MaddyMart Online Store. All rights reserved.</p>
+</footer>
+</body>
+</html>

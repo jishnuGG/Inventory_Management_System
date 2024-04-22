@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <link rel="stylesheet" href="/css/orders.css">
+</head>
+<body>
+<h1>All orders</h1>
+<a href="/orders/new">crete new order</a>
+<p th:text="${data.size()}"></p>
+
+<ol>
+    <th:block th:each="order: ${data}">
+        <li>
+            <p><span>Name = </span><span th:text="${order.getName()}"></span></p>
+            <a th:href="@{/orders/{id}(id=${order.id})}">View order items</a>
+        </li>
+    </th:block>
+</ol>
+
+<button id="click-me">Click me</button>
+
+<script src="/js/orders.js"></script>
+</body>
+</html>
